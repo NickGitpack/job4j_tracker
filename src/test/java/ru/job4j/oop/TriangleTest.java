@@ -29,13 +29,13 @@ public class TriangleTest {
     }
 
     @Test
-    public void when90and42and04Then8() {
+    public void when90and40and40Then8() {
         Point a = new Point(9, 0);
         Point b = new Point(4, 0);
-        Point c = new Point(0, 4);
+        Point c = new Point(4, 0);
         Triangle triangle = new Triangle(a, b, c);
         double rsl = triangle.area();
-        double expected = 10;
+        double expected = -1;
         assertThat(rsl).isCloseTo(expected, offset(0.001));
     }
 }
