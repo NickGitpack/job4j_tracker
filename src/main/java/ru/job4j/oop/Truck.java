@@ -1,6 +1,6 @@
 package ru.job4j.oop;
 
-public class Truck extends Vehicle{
+public class Truck extends Vehicle {
 
     @Override
     public void accelerate() {
