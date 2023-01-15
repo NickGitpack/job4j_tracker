@@ -4,7 +4,7 @@ public class Broken {
 
     private final int sizeOfEmpty = 10;
 
-    public String surname;
+    private String surname;
 
     public static final String NEW_VALUE = "";
 
