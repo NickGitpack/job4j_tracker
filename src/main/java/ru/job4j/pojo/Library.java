@@ -17,7 +17,10 @@ public class Library {
         books[0] = code;
         books[3] = drama;
         for (Book b : books) {
-            if (b.getName().equals("Clean code")) {
+            System.out.println(b.getName() + " " + b.getPages());
+        }
+        for (Book b : books) {
+            if ("Clean code".equals(b.getName())) {
                 System.out.println(b.getName() + " " + b.getPages());
             }
         }
