@@ -48,15 +48,9 @@ public class Tracker {
     public boolean replace(int id, Item item) {
         boolean rsl = false;
         int index = indexOf(id);
-        if (index == -1) {
-            return false;
-        } else if (findById(index) != null) {
-            findById(id).setName(item.getName());
-            rsl = true;
-        } else if (findById(index) == null) {
-            Item it = findById(index);
-            it = item;
-            findById(id).setName(item.getName());
+        if (index != -1) {
+            item.setId(id);
+            items[index] = item;
             rsl = true;
         }
         return rsl;
