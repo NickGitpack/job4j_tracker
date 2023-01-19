@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class StartUI {
 
+    @SuppressWarnings("checkstyle:WhitespaceAfter")
     public void init(Scanner scanner, Tracker tracker) {
         boolean run = true;
         while (run) {
@@ -32,6 +33,17 @@ public class StartUI {
                     }
                 } else {
                     System.out.println("Хранилище еще не содержит заявок");
+                }
+            } else if (select == 2) {
+                System.out.println("=== Edit item ===");
+                System.out.println("Enter id: ");
+                int id = Integer.parseInt(scanner.nextLine());
+                System.out.println("Enter name: ");
+                Item item = new Item(scanner.nextLine());
+                if (tracker.replace(id, item)) {
+                    System.out.println("Заявка изменена успешно.");
+                } else {
+                    System.out.println("Ошибка замены заявки.");
                 }
             }
         }
