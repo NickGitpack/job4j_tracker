@@ -1,6 +1,6 @@
 package ru.job4j.oop;
 
-public class Car {
+public class Car extends Transport {
     private String brand;
     private String model;
     private static String carManual = "Инструкция к автомобилю";
