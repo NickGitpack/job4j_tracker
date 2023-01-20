@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class StartUI {
 
-    @SuppressWarnings("checkstyle:WhitespaceAfter")
     public void init(Scanner scanner, Tracker tracker) {
         boolean run = true;
         while (run) {
@@ -19,10 +18,8 @@ public class StartUI {
                 Item item = new Item(name);
                 tracker.add(item);
                 System.out.println("Добавленная заявка: " + item);
-            } else if (select == 6) {
-                run = false;
             } else if (select == 1) {
-                System.out.println(("=== Show all items ==="));
+                System.out.println("=== Show all items ===");
                 Item[] items = tracker.findAll();
                 if (items.length > 0) {
                     for (Item item : items) {
@@ -33,10 +30,11 @@ public class StartUI {
                 }
             } else if (select == 2) {
                 System.out.println("=== Edit item ===");
-                System.out.println("Enter id: ");
+                System.out.print("Enter id: ");
                 int id = Integer.parseInt(scanner.nextLine());
-                System.out.println("Enter name: ");
-                Item item = new Item(scanner.nextLine());
+                System.out.print("Enter name: ");
+                String name = scanner.nextLine();
+                Item item = new Item(name);
                 if (tracker.replace(id, item)) {
                     System.out.println("Заявка изменена успешно.");
                 } else {
@@ -73,6 +71,8 @@ public class StartUI {
                 } else {
                     System.out.println("Заявки с именем: " + name + " не найдены.");
                 }
+            } else if (select == 6) {
+                run = false;
             }
         }
     }
