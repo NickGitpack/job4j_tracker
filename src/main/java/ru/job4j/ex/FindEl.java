@@ -9,7 +9,7 @@ public class FindEl {
             }
         }
         if (rsl == -1) {
-            throw new ElementNotFoundException();
+            throw new ElementNotFoundException("Exception");
         }
         return rsl;
     }
@@ -24,7 +24,7 @@ public class FindEl {
 
         try {
             indexOf(string, "One");
-            System.out.println();
+            System.out.println(indexOf(string, "One"));
         } catch (ElementNotFoundException e) {
             e.printStackTrace();
         }
