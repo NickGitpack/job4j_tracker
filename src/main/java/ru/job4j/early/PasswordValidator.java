@@ -4,59 +4,9 @@ import static java.lang.Character.*;
 
 public class PasswordValidator {
 
-    public static boolean upperCaseCheck(String password) {
-        boolean result = true;
-        char[] pass = password.toCharArray();
-        for (char symbol : pass) {
-            if (isUpperCase(symbol)) {
-                result = false;
-                break;
-            }
-        }
-        return result;
-    }
-
-    public static boolean lowerCaseCheck(String password) {
-        boolean result = true;
-        char[] pass = password.toCharArray();
-        for (char symbol : pass) {
-            if (isLowerCase(symbol)) {
-                result = false;
-                break;
-            }
-        }
-        return result;
-    }
-
-    public static boolean numbersCheck(String password) {
-        boolean result = true;
-        char[] pass = password.toCharArray();
-        for (char symbol : pass) {
-            if (isDigit(symbol)) {
-                result = false;
-                break;
-            }
-        }
-        return result;
-    }
-
-    public static boolean symbolsCheck(String password) {
-        boolean result = true;
-        char[] pass = password.toCharArray();
-        for (char symbol : pass) {
-            if (symbol >= 33 && symbol <= 47
-                    || symbol >= 58 && symbol <= 64
-                    || symbol >= 91 && symbol <= 96
-                    || symbol >= 123 && symbol <= 126) {
-                result = false;
-                break;
-            }
-        }
-        return result;
-    }
-
     public static boolean keywordsCheck(String password) {
-        boolean result = false;
+        boolean check = false;
+        String[] keywords = new String[] {"qwerty", "12345", "password", "admin", "user"};
         StringBuilder sb = new StringBuilder();
         char[] pass = password.toCharArray();
         for (char index : pass) {
@@ -64,14 +14,49 @@ public class PasswordValidator {
             sb.append(index);
         }
         String str = sb.toString();
-        if (str.contains("qwerty")
-                || str.contains("12345")
-                || str.contains("password")
-                || str.contains("admin")
-                || str.contains("user")) {
-            result = true;
+        for (String keyword : keywords) {
+            if (str.contains(keyword)) {
+                check = true;
+                break;
+            }
         }
-        return result;
+        return check;
+    }
+
+    public static boolean check(String password) {
+        boolean upper = false;
+        boolean lower = false;
+        boolean numbers = false;
+        boolean symbols = false;
+        char[] pass = password.toCharArray();
+        for (char symbol : pass) {
+            if (isUpperCase(symbol)) {
+                upper = true;
+
+            } else if (isLowerCase(symbol)) {
+                lower = true;
+            } else if (isDigit(symbol)) {
+                numbers = true;
+            } else if (symbol >= 33 && symbol <= 47
+                    || symbol >= 58 && symbol <= 64
+                    || symbol >= 91 && symbol <= 96
+                    || symbol >= 123 && symbol <= 126) {
+                symbols = true;
+            }
+        }
+        if (!upper) {
+            throw new IllegalArgumentException("Password should contain at least one uppercase letter");
+        }
+        if (!lower) {
+            throw new IllegalArgumentException("Password should contain at least one lowercase letter");
+        }
+        if (!numbers) {
+            throw new IllegalArgumentException("Password should contain at least one figure");
+        }
+        if (!symbols) {
+            throw new IllegalArgumentException("Password should contain at least one special symbol");
+        }
+        return true;
     }
 
     public static String validate(String password) {
@@ -80,18 +65,9 @@ public class PasswordValidator {
         }
         if (password.length() < 8 || password.length() > 32) {
             throw new IllegalArgumentException("Password should be length [8, 32]");
-            }
-        if (upperCaseCheck(password)) {
-            throw new IllegalArgumentException("Password should contain at least one uppercase letter");
         }
-        if (lowerCaseCheck(password)) {
-            throw new IllegalArgumentException("Password should contain at least one lowercase letter");
-        }
-        if (numbersCheck(password)) {
-            throw new IllegalArgumentException("Password should contain at least one figure");
-        }
-        if (symbolsCheck(password)) {
-            throw new IllegalArgumentException("Password should contain at least one special symbol");
+        if (check(password)) {
+            return password;
         }
         if (keywordsCheck(password)) {
             throw new IllegalArgumentException("Password shouldn't contain substrings: qwerty, 12345, password, admin, user");
@@ -99,4 +75,8 @@ public class PasswordValidator {
         return password;
     }
 
+    public static void main(String[] args) {
+        String string = "Ln2$mUSERTY12";
+        validate(string);
+    }
 }
