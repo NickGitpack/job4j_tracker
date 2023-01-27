@@ -5,7 +5,7 @@ import static java.lang.Character.*;
 public class PasswordValidator {
 
     public static boolean keywordsCheck(String password) {
-        boolean check = false;
+        boolean checkkey = false;
         String[] keywords = new String[] {"qwerty", "12345", "password", "admin", "user"};
         StringBuilder sb = new StringBuilder();
         char[] pass = password.toCharArray();
@@ -16,11 +16,11 @@ public class PasswordValidator {
         String str = sb.toString();
         for (String keyword : keywords) {
             if (str.contains(keyword)) {
-                check = true;
+                checkkey = true;
                 break;
             }
         }
-        return check;
+        return checkkey;
     }
 
     public static boolean check(String password) {
@@ -66,17 +66,12 @@ public class PasswordValidator {
         if (password.length() < 8 || password.length() > 32) {
             throw new IllegalArgumentException("Password should be length [8, 32]");
         }
-        if (check(password)) {
-            return password;
-        }
         if (keywordsCheck(password)) {
             throw new IllegalArgumentException("Password shouldn't contain substrings: qwerty, 12345, password, admin, user");
         }
+        if (check(password)) {
+            return password;
+        }
         return password;
-    }
-
-    public static void main(String[] args) {
-        String string = "Ln2$mUSERTY12";
-        validate(string);
     }
 }
