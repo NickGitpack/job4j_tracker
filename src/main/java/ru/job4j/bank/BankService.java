@@ -19,7 +19,6 @@ public class BankService {
     }
 
     public void addAccount(String passport, Account account) {
-        boolean rsl = false;
         User user = findByPassport(passport);
         System.out.println(users.get(user));
         for (Account acc : users.get(user)) {
