@@ -22,7 +22,7 @@ public class BankService {
         User user = findByPassport(passport);
         System.out.println(users.get(user));
         for (Account acc : users.get(user)) {
-            System.out.println(acc.getRequisite() + " " + acc.getBalance());
+            System.out.println(acc.getRequisite() + " = " + acc.getBalance());
         }
         if (!users.get(user).contains(account)) {
             users.get(user).add(account);
