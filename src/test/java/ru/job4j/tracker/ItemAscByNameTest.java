@@ -18,8 +18,8 @@ class ItemAscByNameTest {
                 new Item(2, "Cheese")
         );
         List<Item> expected = Arrays.asList(
-                new Item(4, "Bread"),
                 new Item(2, "Cheese"),
+                new Item(4, "Bread"),
                 new Item(1, "Milk")
         );
         items.sort(new ItemAscByName());
