@@ -1,6 +1,5 @@
 package ru.job4j.tracker;
 
-import ru.job4j.bank.Account;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
