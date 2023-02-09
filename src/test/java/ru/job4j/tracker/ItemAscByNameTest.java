@@ -11,7 +11,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 class ItemAscByNameTest {
 
     @Test
-    void compare() {
+    void whenSortNameAsc() {
         List<Item> items = Arrays.asList(
                 new Item(1, "Milk"),
                 new Item(4, "Bread"),

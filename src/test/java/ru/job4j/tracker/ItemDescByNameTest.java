@@ -8,10 +8,10 @@ import java.util.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-class ItemDEscByNameTest {
+class ItemDescByNameTest {
 
     @Test
-    void compare() {
+    void whenSortNameDesc() {
         List<Item> items = Arrays.asList(
                 new Item(1, "Milk"),
                 new Item(4, "Bread"),
@@ -22,7 +22,7 @@ class ItemDEscByNameTest {
                 new Item(2, "Cheese"),
                 new Item(1, "Milk")
         );
-        items.sort(new ItemAscByName());
+        items.sort(new ItemDescByName());
         assertThat(items.equals(expected));
     }
 }
