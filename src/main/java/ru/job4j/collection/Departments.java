@@ -12,11 +12,7 @@ public class Departments {
             String start = "";
             String[] splt = value.split("/");
             for (String el : splt) {
-                if (el.equals(splt[0])) {
-                    rsl.add(el);
-                } else {
-                    rsl.add(rsl.get(rsl.size() - 1) + start + "/" + el);
-                }
+                rsl.add(el.equals(splt[0]) ? el : rsl.get(rsl.size() - 1) + start + "/" + el);
             }
         }
         tmp.addAll(rsl);
