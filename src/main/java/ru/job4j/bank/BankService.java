@@ -54,7 +54,7 @@ public class BankService {
      * Метод ищет  среди всех пользователей того, кому принадлежит переданный в метод паспорт.
      * @param passport номер паспорта, по которому происходит поиск.
      * @return возвращает либо найденного подьзователя, либо нулевое значение.
-     */
+
     public User findByPassport(String passport) {
         for (User user : users.keySet()) {
             if (user.getPassport().equals(passport)) {
@@ -63,13 +63,21 @@ public class BankService {
         }
         return null;
     }
+    */
+    public User findByPassport(String passport) {
+        return users.keySet()
+                .stream()
+                .filter(user -> user.getPassport().equals(passport))
+                .findFirst()
+                .orElse(null);
+    }
 
     /**
      * Метод ищет номер аккаунт по данным паспорта пользователя и по реквизитам аккаунта.
      * @param passport номер паспорта, по которому происходит поиск.
      * @param requisite номер аккаунта, по которому происходит поиск.
      * @return возвращает найденный аккаунт, или нулевое значение.
-     */
+
     public Account findByRequisite(String passport, String requisite) {
         User user = findByPassport(passport);
         if (user != null) {
@@ -80,6 +88,18 @@ public class BankService {
                 }
             }
 
+        }
+        return null;
+    }
+    */
+    public Account findByRequisite(String passport, String requisite) {
+        User user = findByPassport(passport);
+        if (user != null) {
+            return users.get(user)
+                    .stream()
+                    .filter(req -> req.getRequisite().equals(requisite))
+                    .findFirst()
+                    .orElse(null);
         }
         return null;
     }
